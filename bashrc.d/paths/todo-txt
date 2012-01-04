@@ -1,0 +1,3 @@
+export PATH=$HOME/opt/todo.txt_cli:$PATH
+export TODOTXT_DEFAULT_ACTION=ls
+alias t='todo.sh -d $HOME/opt/todo.txt_cli/todo.cfg'
