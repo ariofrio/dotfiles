@@ -1,7 +1,7 @@
 
 for i in $HOME/opt/*; do
-  if [ -f "$i/bashrc" ]; do
+  if [ -f "$i/bashrc" ]; then
     . "$i/bashrc"
-  done
+  fi
 done
 
