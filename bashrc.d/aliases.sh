@@ -4,8 +4,6 @@ alias bashrc="unalias -a && . ~/.bashrc"
 # navigation
 function mc() { mkdir "$@" && cd "${!#}"; } # last argument: http://j.mp/oXkE4L
 function p() { cd "$HOME/Dropbox/Projects/$1"; }
-
-# ls
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -13,6 +11,7 @@ alias l='ls -CF'
 # editing
 alias v=vimx
 alias o=xdg-open
+alias rmr="rm -R"
 
 # *ake
 alias m=make
