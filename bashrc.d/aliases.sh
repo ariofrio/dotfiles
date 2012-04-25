@@ -24,18 +24,19 @@ function vb() { v Gemfile; }
 
 # git
 alias ga="git add"
+alias gb="git blame"
 alias gs="git status"
-alias gc="git commit"
-alias gl="git log"
-alias gco="git checkout"
-alias gb="git branch"
 alias gd="git diff"
 alias gdc="git diff --cached"
+alias gl="git log"
+alias gc="git commit"
 alias gp="git push"
+
+alias gco="git checkout"
+alias gb="git branch"
 alias gpl="git pull"
-alias gm="git merge"
-alias gf="git fetch"
-alias gv="git mv"
+alias gmv="git mv"
+alias grm="git rm"
 
 # other
 alias db=dropbox

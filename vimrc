@@ -196,16 +196,32 @@ Bundle 'Markdown'
 Bundle 'kien/ctrlp.vim'
 Bundle 'chords'
 
+Bundle "tpope/vim-fugitive"
+nnoremap <leader>ga :Gadd<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gdc :Git diff --cached %<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gp :Git push<CR>
+
 Bundle 'scratch.vim'
 nnoremap <leader><tab> :Scratch<cr>
 
-Bundle 'ariofrio/molokai-sjl'
-:colorscheme molokai
+Bundle 'altercation/vim-colors-solarized'
+:colorscheme solarized
 
 " Required by Vundle.
 filetype plugin indent on
 
-" Don't forget to run `:BundleInstall` when you make changes to this section!
+" When you make changes to this section, run the following:
+"
+"     :w
+"     :so %
+"     :BundleInstall
+"     :bd
+"     :so %
 
 "## <i>Et cetera</i>
 
