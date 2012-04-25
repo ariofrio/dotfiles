@@ -1,3 +1,0 @@
-export EC2_HOME=$HOME/opt/ec2-api-tools
-export JAVA_HOME=/etc/alternatives/jre
-export PATH=$EC2_HOME/bin:$PATH
