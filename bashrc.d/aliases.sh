@@ -12,7 +12,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 
 # editing
-function v() { [ -z $DISPLAY ] && vimx "$@" || gvim --remote "$@"; }
+function v() { [ -z $DISPLAY ] && vimx "$@" || ( gvim --remote-silent "$@"; wmctrl -a GVIM; ) }
 alias e=v
 alias s=e # Habits die hard.
 alias o=xdg-open
