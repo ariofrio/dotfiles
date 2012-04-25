@@ -8,6 +8,9 @@ alias ll="ls -alF"
 alias la="ls -A"
 alias lf="ls -CF"
 alias l="ls"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 
 # editing
 function v() { [ -z $DISPLAY ] && vimx "$@" || gvim --remote "$@"; }
