@@ -10,7 +10,9 @@ alias lf="ls -CF"
 alias l="ls"
 
 # editing
-alias v=vimx
+function v() { [ -z $DISPLAY ] && vimx "$@" || gvim --remote "$@"; }
+alias e=v
+alias s=e # Habits die hard.
 alias o=xdg-open
 alias rmr="rm -R"
 
