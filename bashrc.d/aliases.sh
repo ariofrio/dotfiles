@@ -17,6 +17,7 @@ alias e=v
 alias s=e # Habits die hard.
 alias o=xdg-open
 alias rmr="rm -R"
+alias rmrf="rm -Rf"
 
 # *ake
 alias m=make
