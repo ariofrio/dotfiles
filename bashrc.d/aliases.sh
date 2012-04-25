@@ -4,9 +4,10 @@ alias bashrc="unalias -a && . ~/.bashrc"
 # navigation
 function mc() { mkdir "$@" && cd "${!#}"; } # last argument: http://j.mp/oXkE4L
 function p() { cd "$HOME/Dropbox/Projects/$1"; }
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll="ls -alF"
+alias la="ls -A"
+alias lf="ls -CF"
+alias l="ls"
 
 # editing
 alias v=vimx
