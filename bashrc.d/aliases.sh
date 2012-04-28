@@ -1,6 +1,8 @@
 # updating the bash environment "live"
 alias bashrc="unalias -a && . ~/.bashrc"
 
+alias cls=clear
+
 # navigation
 function mc() { mkdir "$@" && cd "${!#}"; } # last argument: http://j.mp/oXkE4L
 function p() { cd "$HOME/Dropbox/Projects/$1"; }
