@@ -21,7 +21,7 @@ set showmode
 set showcmd
 set hidden
 set wildmenu
-set wildmode=list:longest
+set wildmode=list:longest " Tab completion works as in Bash
 set visualbell
 set cursorline
 set ttyfast
@@ -124,6 +124,10 @@ nnoremap k gk
 " to break a bunch of plugins.
 
 nnoremap ; :
+
+" I rarely type 'jj' in regular code or text. So make it take me out of insert
+" mode.
+inoremap jj <Esc>
 
 " Finally, I really like TextMate's "save on losing focus" feature. I can't
 " remember a time when I didn't want to save a file after tabbing away from my
