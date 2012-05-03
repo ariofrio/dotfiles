@@ -6,7 +6,7 @@ alias cls=clear
 # navigation
 function mc() { mkdir "$@" && cd "${!#}"; } # last argument: http://j.mp/oXkE4L
 function p() { cd "$HOME/Dropbox/Projects/$1"; }
-alias ll="ls -alF"
+alias ll="ls -lF"
 alias la="ls -A"
 alias l="ls -CF"
 alias ..="cd .."
