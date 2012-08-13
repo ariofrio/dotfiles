@@ -1,117 +1,77 @@
-"## Essential (cannot live without)
+" Andres Riofrio's .vimrc
 
-" It's 2012 -- we don't need to be compatible with vi.
-set nocompatible
+" VimGolf's .vimrc
+" http://vimdoc.sourceforge.net/htmldoc/starting.html#vimrc
 
-" Prevent some [security exploits](http://j.mp/Jmfwyy) having to do with
-" modelines in files.
-set modelines=0
+set nocompatible        " use vim defaults
+set scrolloff=3         " keep 3 lines when scrolling
+set ai                  " set auto-indenting on for programming
 
-" I like tabs to expand to two spaces. [Learn more](http://j.mp/IC6nQL).
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+set showcmd             " display incomplete commands
+set nobackup            " do not keep a backup file
+set number              " show line numbers
+set ruler               " show the current row and column
 
-" Make everything better.
+set hlsearch            " highlight searches
+set incsearch           " do incremental searching
+set showmatch           " jump to matches when entering regexp
+set ignorecase          " ignore case when searching
+set smartcase           " no ignorecase if Uppercase char present
+
+set visualbell t_vb=    " turn off error beep/flash
+set novisualbell        " turn off visual bell
+
+set backspace=indent,eol,start  " make that backspace key work the way it should
+
+syntax on               " turn syntax highlighting on by default
+filetype on             " detect type of file
+filetype indent on      " load indent file for specific file type
+
+set t_RV=               " http://bugs.debian.org/608242, http://groups.google.com/group/vim_dev/browse_thread/thread/9770ea844cec3282
+
+" Custom Settings
+
 set encoding=utf-8
-set scrolloff=3
-set autoindent
-set showmode
-set showcmd
-"set hidden
-set wildmenu
-set wildmode=list:longest " Tab completion works as in Bash
-set visualbell
-set cursorline
-set ttyfast
-set ruler
-set backspace=indent,eol,start
-set laststatus=2
+set modelines=0         " prevent security exploits http://j.mp/Jmfwyy
+set directory-=.        " write swap files elsewhere, but not in file's directory
+set cursorline          " highlight current line
+let mapleader = ","     " change the <Leader> key
+set gdefault            " substitute all matches in a line instead of one
+set guioptions-=m       " hide menu bar
+set guioptions-=T       " hide toolbar
+filetype plugin on
+set nofoldenable        " disable folding: make all folds open
+set mouse=a             " enable mouse for all modes in terminal
 
-" Change Vim's line number column to display how far away each line is from the 
-" current one, instead of showing the absolute lie number. Use it with motion
-" commands like `d<NUMBER>d`.
-set relativenumber
+set tabstop=2           " # of spaces a <Tab> counts for
+set shiftwidth=2        " # of spaces for each step of (auto)indent
+set softtabstop=2       " # of spaces inserted when <Tab> is pressed in insert mode
+set expandtab           " use spaces instead of tabs
 
-" Create `<FILENAME>.un~` files whenever you edit a file. These files contain
-" undo information so you can undo previous actions even after you close and
-" reopen a file.
-"
-" Also, make sure that undo files and backup files are stored somewhere else.
-set undofile
-set backupdir=./.vim-backup,/var/tmp/ariofrio-vim-backup
-set directory=./.vim-backup,/var/tmp/ariofrio-vim-backup
+set textwidth=79        " auto-break lines at 79 characters
+"set formatoptions=qrn1
+set colorcolumn=80      " show a visual text width indicator
 
-" Change the `<leader>` key. For me `,` is easier to type than `\`. 
-let mapleader = ","
+set wildmenu            " tab completion in command mode
+set wildmode=list:longest " ... that works like Bash
 
-"### Searching/moving
+" Custom Mappings
 
-" Automatically insert a `\v` before any string you search for. This makes searches
-" use normal regexes instead of Vim's crazy default regex characters. I already know
-" Perl/Python compatible regex formatting, why learn another scheme?
 nnoremap / /\v
 vnoremap / /\v
 
-" Make Vim deal with case-sensitive search intelligently. If you search for an
-" all-lowercase string your search will be case-insensitive, but if one or more
-" characters is uppercase the search will be case-sensitive. Most of the time
-" this does what you want.
-set ignorecase
-set smartcase
+nnoremap <tab> %
+vnoremap <tab> %
 
-" Apply substitutions globally on lines. For example, instead of
-" `:%s/foo/bar/g` you just type `:%s/foo/bar/`. This is almost always what you
-" want (when was the last time you wanted to only replace the first occurrence
-" of a word on a line?) and if you need the previous behavior you just tack on
-" the `g` again.
-set gdefault
+nnoremap j gj
+nnoremap k gk
+nnoremap ; :
+inoremap jj <Esc>
+nnoremap <leader>q gqip
+nnoremap <leader><space> :nohlsearch<cr>
+cmap w!! w !sudo tee >/dev/null %
 
-" Work together to highlight search results (as you type). It's really quite
-" handy, as long as you have the next line as well.
-set incsearch
-set showmatch
-set hlsearch
-
-" Make it easy to clear out a search by typing `,<space>`. This gets rid of the
-" distracting highlighting once I’ve found what I’m looking for.
-nnoremap <leader><space> :noh<cr>
-
-" Make the tab key match bracket pairs. I use this to move around all the time
-" and `<tab>` is much easier to type than `%`.
-nnoremap <tab> % vnoremap <tab> %
-
-" The next section makes Vim handle long lines correctly. These lines manage
-" my line wrapping settings and also show a colored column at 85 characters
-" (so I can see when I write a too-long line of code).
-"
-" See [`:help fo-table`][fo-table] and the Vimcasts on [soft wrapping][] and
-" [hard wrapping][] for more information.
-"
-"   [fo-table]: http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
-"   [soft wrapping]: http://vimcasts.org/episodes/soft-wrapping-text/
-"   [hard wrapping]: http://vimcasts.org/episodes/hard-wrapping-text/
-
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-set colorcolumn=85
-
-" New Vim users will want the following lines to teach them to do things
-" right.
-" 
-" This will disable the arrow keys while you're in normal mode to help you
-" learn to use `hjkl`. Trust me, you want to learn to use `hjkl`. Playing a lot of
-" Nethack also helps.
-"
-" It also disables the arrow keys in insert mode to force you to get back into
-" normal mode the instant you're done inserting text, which is the "right way"
-" to do things.
-"
-" It also makes `j` and `k` work the way you expect instead of working in some
-" archaic "movement by file line instead of screen line" fashion.
-
+" noob settings
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -120,90 +80,20 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
 
-" I also like to make `;` do the same thing as `:` -- it's one less key to hit
-" every time I want to save a file: I don't remap `:` back to `;` because it seems
-" to break a bunch of plugins.
-
-nnoremap ; :
-
-" I rarely type 'jj' in regular code or text. So make it take me out of insert
-" mode.
-inoremap jj <Esc>
-
-" Finally, I really like TextMate's "save on losing focus" feature. I can't
-" remember a time when I didn't want to save a file after tabbing away from my
-" editor (especially with version control and Vim's persistent undo).
-
-au FocusLost * silent :wa
-
-" Auto-save on key press
-"function! WriteFile() 
-  "if &buftype == ""
-    "write
-  "endif
-  "return '%f %h%w%m%r%=%-14(%l,%c%V%) %(%P%)'
-"endfunction
-"setlocal statusline=%!WriteFile()
-"set laststatus=2
-
-"## Using the Leader
-
-" Vim dedicates an entire keyboard key for user-specific customizations. This
-" is called the "leader" and by default it's mapped to `\`. As I mentioned in
-" the previous section I prefer to use `,` instead.
-" 
-" Each person will find little things they type or execute often and want to
-" create shortcuts for those things. The leader is a kind of "namespace" to
-" keep those customizations separate and prevent them from shadowing default
-" commands.
-" 
-" Here are a few of the things I use leader commands for. You'll certainly
-" have different ideas than I do, but this might give you an idea of what you
-" can do.
+au FocusLost * silent :wa " autosave on Alt-Tab
  
-" I use `,W` to mean "strip all trailing whitespace in the current file" so I
-" can clean things up quickly.
+" strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
-" This next mapping imitates TextMate's `Ctrl+Q` function to re-hardwrap
-" paragraphs of text:
-nnoremap <leader>q gqip
-
-" Shortcut to quickly edit my ~/.vimrc file, so I can add things to it on the
-" fly.
-nnoremap <leader>esv <C-w><C-v><C-l>:e $MYVIMRC<cr>
 nnoremap <leader>ev :e $MYVIMRC<cr>
-
-" Shortcut to quickly edit the ~/.vim/ftplugin/FILETYPE.vim file so I can add
-" filetype-specific settings on the fly.
 nnoremap <leader>ef :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
+nnoremap <leader>rv :w<CR>:so $MYVIMRC<CR>:BundleInstall<CR>
+nnoremap <leader>rf :w<CR>:set filetype=<C-R>=&filetype<CR><CR>
 
-" Shortcuts to reload ~/.vimrc, and to reload filetype settings.
-nnoremap <leader>rv :so $MYVIMRC<CR>
-nmap <leader>rr <leader>rv
-nnoremap <leader>rf :set filetype=<C-R>=&filetype<CR><CR>
+" Bundles
 
-"## Prettyness
-
-" One of the most important things for a text editor is that it look pretty. Let's
-" make Vim beautiful. By the way, if you are looking for the color scheme, it's
-" included below as a bundle.
-
-" Remove gVim's distracting and unnecessary toolbar.
-:set guioptions-=T
-
-" Disable the visual bell because it's distracting.
-set novisualbell
-
-"## Bundles
-
-" Vundle is a Vim plugin manager that can download bundles from GitHub.
-" It's awesome!
-
-" Install Vundle from GitHub automatically if not found. http://j.mp/I8bCry
+" install Vundle on new machines
 let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
   echo "Installing Vundle.."
@@ -212,14 +102,11 @@ if !filereadable(vundle_readme)
   silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
 endif
 
-" Enable Vundle. 
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+Bundle 'gmarik/vundle'
 
-" Configure bundles managed by Vundle from GitHub (user/repo), vim-scripts
-" (name), or non github repos (git://...).
-Bundle 'gmarik/vundle', {'v': 'v'}
 Bundle 'Markdown'
 Bundle 'kien/ctrlp.vim'
 Bundle 'chords'
@@ -230,9 +117,11 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'vim-json-bundle'
 Bundle 'jeroenbourgois/vim-actionscript'
 Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'rosenfeld/conque-term'
 Bundle 'groenewege/vim-less'
+Bundle 'godlygeek/tabular'
 "Bundle 'suan/vim-instant-markdown'
+
+Bundle 'rosenfeld/conque-term'
 let g:ConqueTerm_ReadUnfocused = 1
 
 Bundle "tpope/vim-fugitive"
@@ -249,32 +138,7 @@ Bundle 'scratch.vim'
 nnoremap <leader><tab> :Scratch<cr>
 
 Bundle 'altercation/vim-colors-solarized'
-:colorscheme solarized
+colorscheme solarized
 
-" Required by Vundle.
 filetype plugin indent on
-
-" When you make changes to this section, run the following:
-"
-"     :w
-"     :so %
-"     :BundleInstall
-"     :bd
-"     :so %
-
-"## <i>Et cetera</i>
-
-" <http://vim.wikia.com/wiki/Java/C/C%2B%2B_folding>
-set nofoldenable
-
-" Do not visibly wrap long lines.
-set wrap!
-
-" Enable mouse selection and navigation for XTerm-compatible terminals.
-" <http://vim.wikia.com/wiki/Using_the_mouse_for_Vim_in_an_xterm>
-set mouse=a
-
-" Quick command for writing the current file as root (no more `sudo vim`)
-" <http://stackoverflow.com/questions/1005/getting-root-permissions-on-a-file-inside-of-vi/37042#37042>
-cmap w!! w !sudo tee >/dev/null %
 
