@@ -88,7 +88,8 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ef :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
-nnoremap <leader>rv :w<CR>:so $MYVIMRC<CR>:BundleInstall<CR>
+nnoremap <leader>rv :w<CR>:so $MYVIMRC<CR>
+nnoremap <leader>rb :BundleInstall<CR>
 nnoremap <leader>rf :w<CR>:set filetype=<C-R>=&filetype<CR><CR>
 
 " Bundles
@@ -137,8 +138,12 @@ nnoremap <leader>gp :Git push<CR>
 Bundle 'scratch.vim'
 nnoremap <leader><tab> :Scratch<cr>
 
-Bundle 'altercation/vim-colors-solarized'
-colorscheme solarized
+"Bundle 'altercation/vim-colors-solarized'
+Bundle 'flazz/vim-colorschemes'
+colorscheme molokai
+highlight ColorColumn guibg=gray8
+set fillchars+=vert:\ 
+highlight VertSplit guibg=gray50
 
 filetype plugin indent on
 
