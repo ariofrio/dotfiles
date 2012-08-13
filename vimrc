@@ -19,7 +19,7 @@ set scrolloff=3
 set autoindent
 set showmode
 set showcmd
-set hidden
+"set hidden
 set wildmenu
 set wildmode=list:longest " Tab completion works as in Bash
 set visualbell
@@ -37,7 +37,11 @@ set relativenumber
 " Create `<FILENAME>.un~` files whenever you edit a file. These files contain
 " undo information so you can undo previous actions even after you close and
 " reopen a file.
+"
+" Also, make sure that undo files and backup files are stored somewhere else.
 set undofile
+set backupdir=./.vim-backup,/var/tmp/ariofrio-vim-backup
+set directory=./.vim-backup,/var/tmp/ariofrio-vim-backup
 
 " Change the `<leader>` key. For me `,` is easier to type than `\`. 
 let mapleader = ","
@@ -133,7 +137,17 @@ inoremap jj <Esc>
 " remember a time when I didn't want to save a file after tabbing away from my
 " editor (especially with version control and Vim's persistent undo).
 
-au FocusLost * :wa
+au FocusLost * silent :wa
+
+" Auto-save on key press
+"function! WriteFile() 
+  "if &buftype == ""
+    "write
+  "endif
+  "return '%f %h%w%m%r%=%-14(%l,%c%V%) %(%P%)'
+"endfunction
+"setlocal statusline=%!WriteFile()
+"set laststatus=2
 
 "## Using the Leader
 
@@ -158,9 +172,19 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " paragraphs of text:
 nnoremap <leader>q gqip
 
-" This last mapping lets me quickly open up my `~/.vimrc` file in a vertically
-" split window so I can add new things to it on the fly.
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+" Shortcut to quickly edit my ~/.vimrc file, so I can add things to it on the
+" fly.
+nnoremap <leader>esv <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
+
+" Shortcut to quickly edit the ~/.vim/ftplugin/FILETYPE.vim file so I can add
+" filetype-specific settings on the fly.
+nnoremap <leader>ef :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
+
+" Shortcuts to reload ~/.vimrc, and to reload filetype settings.
+nnoremap <leader>rv :so $MYVIMRC<CR>
+nmap <leader>rr <leader>rv
+nnoremap <leader>rf :set filetype=<C-R>=&filetype<CR><CR>
 
 "## Prettyness
 
@@ -199,6 +223,17 @@ Bundle 'gmarik/vundle', {'v': 'v'}
 Bundle 'Markdown'
 Bundle 'kien/ctrlp.vim'
 Bundle 'chords'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'vim-json-bundle'
+Bundle 'jeroenbourgois/vim-actionscript'
+Bundle 'vim-pandoc/vim-pandoc'
+Bundle 'rosenfeld/conque-term'
+Bundle 'groenewege/vim-less'
+"Bundle 'suan/vim-instant-markdown'
+let g:ConqueTerm_ReadUnfocused = 1
 
 Bundle "tpope/vim-fugitive"
 nnoremap <leader>ga :Gadd<CR>
@@ -229,10 +264,8 @@ filetype plugin indent on
 
 "## <i>Et cetera</i>
 
-" Enable syntax folding for all files (specially Java, which does not enable it
-" by default). It's not like we need manual folding anyway, not right now.
 " <http://vim.wikia.com/wiki/Java/C/C%2B%2B_folding>
-" set foldmethod=syntax
+set nofoldenable
 
 " Do not visibly wrap long lines.
 set wrap!
