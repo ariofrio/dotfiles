@@ -120,13 +120,19 @@ Bundle 'jeroenbourgois/vim-actionscript'
 Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'groenewege/vim-less'
 Bundle 'godlygeek/tabular'
+Bundle 'camelcasemotion'
 "Bundle 'suan/vim-instant-markdown'
+
+"Bundle 'cespare/vim-bclose'
+"nmap <C-W><C-W> <Plug>Kwbd
 
 Bundle 'rosenfeld/conque-term'
 let g:ConqueTerm_ReadUnfocused = 1
 
 Bundle "tpope/vim-fugitive"
-nnoremap <leader>ga :Gadd<CR>
+nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gd :Gdiff<CR>
