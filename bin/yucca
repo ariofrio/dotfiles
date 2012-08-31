@@ -1,0 +1,81 @@
+#/bin/sh
+
+DIR="$HOME/Dropbox/Apps/Yucca"
+CMDS="gem yum"
+
+function option() {
+  case $1 in
+    gem|yum)
+      case $2 in
+        install)
+          echo install
+          ;;
+        uninstall)
+          echo uninstall
+          ;;
+        sudo) # sudo or ""
+          echo sudo
+          ;;
+      esac
+      ;;
+  esac
+}
+
+function add() {
+  remove $1 $2
+  echo "$2" >> "$DIR/$1.list"
+}
+function remove() {
+  sed -i "/^$2\$/d" "$DIR/$1.list"
+}
+
+mkdir -p "$DIR" || exit 1
+case "$1" in
+  wrap)
+    shift
+    case $2 in
+      $(option $1 install))
+        $(option $1 sudo) "$@" && add $1 $3
+        ;;
+      $(option $1 uninstall))
+        $(option $1 sudo) "$@" && remove $1 $3
+        ;;
+      *)
+        shift
+        "$@"
+    esac
+    ;;
+  install)
+    for cmd in $CMDS; do
+      [ -f "$DIR/$cmd.list" ] || continue
+      $(option $cmd sudo) $cmd $(option $cmd install) $(cat "$DIR/$cmd.list")
+    done
+    ;;
+  list)
+    if [ -z $2 ]; then
+      for cmd in $CMDS; do
+        [ -f "$DIR/$cmd.list" ] || continue
+        cat "$DIR/$cmd.list" | while read n; do
+          echo $cmd $n
+        done
+      done
+    else
+      cat "$DIR/$2.list"
+    fi
+    ;;
+  *)
+    echo "Usage: yucca wrap COMMANDLINE..."
+    echo
+    echo "  Call a package manager using COMMANDLINE and saves the names of changed"
+    echo "  packages."
+    echo
+    echo "Usage: yucca install"
+    echo
+    echo "  Install all saved packages."
+    echo
+    echo "Usage: yucca list [COMMAND]"
+    echo
+    echo "  List all saved packages. If COMMAND is given, only list saved packages"
+    echo "  for COMMAND."
+esac
+

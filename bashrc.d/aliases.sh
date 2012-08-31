@@ -47,3 +47,7 @@ alias grm="git rm"
 
 # other
 alias db=dropbox
+
+# yucca
+alias gum="yucca wrap gem"
+alias yam="yucca wrap yum"
