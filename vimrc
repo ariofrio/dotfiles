@@ -34,6 +34,7 @@ set t_RV=               " http://bugs.debian.org/608242, http://groups.google.co
 set encoding=utf-8
 set modelines=0         " prevent security exploits http://j.mp/Jmfwyy
 set directory-=.        " write swap files elsewhere, but not in file's directory
+set directory+=$TEMP    " write swap files to temporary directory
 set cursorline          " highlight current line
 let mapleader = ","     " change the <Leader> key
 set gdefault            " substitute all matches in a line instead of one
@@ -42,6 +43,7 @@ set guioptions-=T       " hide toolbar
 filetype plugin on
 set nofoldenable        " disable folding: make all folds open
 set mouse=a             " enable mouse for all modes in terminal
+set guifont=Consolas:h11
 
 set tabstop=2           " # of spaces a <Tab> counts for
 set shiftwidth=2        " # of spaces for each step of (auto)indent
@@ -122,6 +124,8 @@ Bundle 'groenewege/vim-less'
 Bundle 'godlygeek/tabular'
 Bundle 'camelcasemotion'
 "Bundle 'suan/vim-instant-markdown'
+Bundle 'codepad'
+Bundle 'Rename'
 
 "Bundle 'cespare/vim-bclose'
 "nmap <C-W><C-W> <Plug>Kwbd
