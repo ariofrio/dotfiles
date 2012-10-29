@@ -43,7 +43,11 @@ set guioptions-=T       " hide toolbar
 filetype plugin on
 set nofoldenable        " disable folding: make all folds open
 set mouse=a             " enable mouse for all modes in terminal
-set guifont=Consolas:h11
+if has("win32")
+  set guifont=Consolas:h11
+else
+  set guifont=Monospace\ 11
+endif
 
 set tabstop=2           " # of spaces a <Tab> counts for
 set shiftwidth=2        " # of spaces for each step of (auto)indent
