@@ -132,6 +132,7 @@ Bundle 'camelcasemotion'
 "Bundle 'suan/vim-instant-markdown'
 Bundle 'codepad'
 Bundle 'Rename'
+Bundle 'ariofrio/vim-iosession'
 Bundle 'butane.vim'
 
 Bundle 'rosenfeld/conque-term'
