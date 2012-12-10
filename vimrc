@@ -132,9 +132,7 @@ Bundle 'camelcasemotion'
 "Bundle 'suan/vim-instant-markdown'
 Bundle 'codepad'
 Bundle 'Rename'
-
-"Bundle 'cespare/vim-bclose'
-"nmap <C-W><C-W> <Plug>Kwbd
+Bundle 'butane.vim'
 
 Bundle 'rosenfeld/conque-term'
 let g:ConqueTerm_ReadUnfocused = 1
