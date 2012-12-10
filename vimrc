@@ -33,8 +33,6 @@ set t_RV=               " http://bugs.debian.org/608242, http://groups.google.co
 
 set encoding=utf-8
 set modelines=0         " prevent security exploits http://j.mp/Jmfwyy
-set directory-=.        " write swap files elsewhere, but not in file's directory
-set directory+=$TEMP    " write swap files to temporary directory
 set cursorline          " highlight current line
 let mapleader = ","     " change the <Leader> key
 set gdefault            " substitute all matches in a line instead of one
@@ -43,10 +41,27 @@ set guioptions-=T       " hide toolbar
 filetype plugin on
 set nofoldenable        " disable folding: make all folds open
 set mouse=a             " enable mouse for all modes in terminal
+
 if has("win32")
   set guifont=Consolas:h11
 else
   set guifont=Monospace\ 11
+endif
+
+set directory-=.                        " write swap files elsewhere
+if has("win32")
+  set directory^=$HOME/vimfiles/swap//  " (directory must exist to be used)
+  set directory+=$TEMP//                " write swap files to temp directory
+else
+  set directory^=$HOME/.vim/swap//      " (directory must exist to be used)
+endif
+
+set undofile
+set undodir-=.                          " write undo files elsewhere
+if has("win32")
+  set undodir^=$HOME/vimfiles/undo//    " (directory must exist to be used)
+else
+  set undodir^=$HOME/.vim/undo//        " (directory must exist to be used)
 endif
 
 set tabstop=2           " # of spaces a <Tab> counts for
