@@ -133,7 +133,9 @@ Bundle 'camelcasemotion'
 Bundle 'codepad'
 Bundle 'Rename'
 Bundle 'ariofrio/vim-iosession'
+Bundle 'taglist.vim'
 Bundle 'butane.vim'
+Bundle 'scrooloose/syntastic'
 
 Bundle 'rosenfeld/conque-term'
 let g:ConqueTerm_ReadUnfocused = 1
