@@ -104,7 +104,8 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-au FocusLost * silent :wa " autosave on Alt-Tab
+set autowriteall            " autosave on buffer change, :quit, etc.
+au FocusLost * silent! :wa  " autosave on Alt-Tab
  
 " strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
