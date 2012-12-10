@@ -66,8 +66,10 @@ set wildmode=list:longest " ... that works like Bash
 nnoremap / /\v
 vnoremap / /\v
 
-nnoremap <tab> %
-vnoremap <tab> %
+" <Tab> is <C-i>, and <C-i> is the opposite of <C-o>, and
+" both are useful
+"nnoremap <tab> %
+"vnoremap <tab> %
 
 nnoremap j gj
 nnoremap k gk
