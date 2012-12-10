@@ -119,6 +119,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Markdown'
 Bundle 'kien/ctrlp.vim'
 Bundle 'chords'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-repeat'
 Bundle 'kchmck/vim-coffee-script'
@@ -137,8 +138,8 @@ Bundle 'taglist.vim'
 Bundle 'butane.vim'
 Bundle 'scrooloose/syntastic'
 
-Bundle 'rosenfeld/conque-term'
-let g:ConqueTerm_ReadUnfocused = 1
+"Bundle 'rosenfeld/conque-term'
+"let g:ConqueTerm_ReadUnfocused = 1
 
 Bundle "tpope/vim-fugitive"
 nnoremap <leader>gw :Gwrite<CR>
