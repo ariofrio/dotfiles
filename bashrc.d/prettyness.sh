@@ -18,6 +18,11 @@ git_info() {
     branch=$(git name-rev --name-only HEAD 2> /dev/null)
   fi
 
+  tracking=$(git branch -vv 2> /dev/null |
+    egrep '^\* +[^ ]+ +[^ ]+ +\[.*: .*\]' |
+    sed -r -e 's/^\* +[^ ]+ +[^ ]+ +\[.*: (.*)\].*$/\1/' \
+      -e 's/ahead /↑/' -e 's/, //' -e s'/behind /↓/' )
+
   staged=$(git diff --staged --name-status 2> /dev/null | wc -l)
   unstaged=$(git diff --name-status 2> /dev/null | wc -l)
   untracked=$(git status --porcelain 2> /dev/null |
@@ -36,11 +41,16 @@ git_info() {
     numbers=
   fi
 
-  if [ -n "$branch" ] || [ -n "$numbers" ]; then
+  if [ -n "$branch" ] || [ -n "$tracking" ] ||
+  [ -n "$numbers" ]; then
     echo -n ' ('
 
     [ -n "$branch" ] && echo -n $branch
     [ -z "$branch" ] && echo -n "none"
+
+    tput setf 5
+    echo -n "$tracking"
+    tput sgr0
 
     tput bold
     [ $staged -gt 0 ] && echo -n " •$staged"
