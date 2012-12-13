@@ -56,7 +56,12 @@ git_info() {
 
 if [ "$color_prompt" = yes ]; then
   PS1='${debian_chroot:+($debian_chroot)}'
-  PS1+='\[\e[34m\]\u@\h\[\e[00m\] : '
+
+  PS1+='\[\e[34m\]'
+  PS1+='$([ "\u" = ariofrio ] || echo -n "\u@")'
+  PS1+='\h'
+  PS1+='\[\e[00m\] : '
+
   PS1+='\[\e[1;32m\]\w\[\e[00m\]'
   PS1+='$(git_info)'
   PS1+='\n> '
