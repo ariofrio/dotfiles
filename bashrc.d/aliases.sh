@@ -55,6 +55,7 @@ alias gp="git push"
 alias gu="git pull"
 alias gpl="git pull"
 alias gf="git fetch"
+alias gup="git remote update"
 
 # other
 alias db=dropbox
