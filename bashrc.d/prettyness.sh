@@ -13,6 +13,8 @@ else
 fi
 
 git_info() {
+  git rev-parse 2> /dev/null || return
+
   branch=$(git symbolic-ref --short HEAD 2> /dev/null)
   if [ -z $branch ]; then # detached head
     branch=$(git name-rev --name-only HEAD 2> /dev/null)
@@ -64,6 +66,30 @@ git_info() {
   fi
 }
 
+dropbox_info() {
+  dir="$(pwd)"
+  dropbox=
+  while [ "$dir" != "/" ]; do
+    if [ -f "$dir/.dropbox" ]; then
+      dropbox=1
+      break;
+    fi
+    dir=$(dirname "$dir")
+  done
+
+  if [ $dropbox ]; then
+    count=$(dropbox filestatus 2> /dev/null |
+      egrep -v ':\s+(up to date|unwatched)$' | wc -l)
+    if [ $count -gt 0 ]; then
+      tput bold
+      echo -n " ↻$count"
+      tput sgr0
+    else
+      echo -n " ✓" 
+    fi
+  fi
+}
+
 if [ "$color_prompt" = yes ]; then
   PS1='${debian_chroot:+($debian_chroot)}'
 
@@ -74,6 +100,7 @@ if [ "$color_prompt" = yes ]; then
 
   PS1+='\[\e[1;32m\]\w\[\e[00m\]'
   PS1+='$(git_info)'
+  PS1+='$(dropbox_info)'
   PS1+='\n> '
 else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h : \w\n> '
