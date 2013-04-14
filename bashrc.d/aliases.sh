@@ -30,6 +30,9 @@ alias b=bundle
 function vb() { v Gemfile; }
 
 # git
+if [ -x $(which hub) ]; then
+  alias git=hub
+fi
 alias ga="git add"
 alias gmv="git mv"
 alias grm="git rm"
@@ -56,6 +59,8 @@ alias gu="git pull"
 alias gpl="git pull"
 alias gf="git fetch"
 alias gup="git remote update"
+alias gls="git ls-files | grep -v '^\.' | xargs ls"
+alias gla="git ls-files | xargs ls"
 
 # other
 alias db=dropbox
@@ -63,3 +68,5 @@ alias db=dropbox
 # yucca
 alias gum="yucca wrap gem"
 alias yam="yucca wrap yum"
+
+export EDITOR=vimx
