@@ -25,6 +25,7 @@
 .grl-metadata-store
 .grl-podcasts
 .gstreamer-0.10
+.gtk-bookmarks
 .guard_history
 .heroku
 .java
@@ -45,7 +46,7 @@
 .scala_history
 .secretsync
 .spice-vdagent
-#.ssh
+.ssh
 .thumbnails
 .vim/bundle
 .vim/swap
@@ -64,5 +65,3 @@ VirtualBox VMs
 YNAB
 bin
 tmp
-.gtk-bookmarks
-.ssh
