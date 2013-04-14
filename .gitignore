@@ -27,6 +27,7 @@
 .gstreamer-0.10
 .guard_history
 .heroku
+.java
 .lesshst
 .local
 .macromedia
@@ -63,3 +64,5 @@ VirtualBox VMs
 YNAB
 bin
 tmp
+.gtk-bookmarks
+.ssh
