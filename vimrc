@@ -112,8 +112,9 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>ef :e ~/.vim/ftplugin/<C-R>=&filetype<CR>.vim<CR>
-nnoremap <leader>rv :w<CR>:so $MYVIMRC<CR>
-nnoremap <leader>rb :BundleInstall<CR>
+nnoremap <leader>rc :e $MYVIMRC<CR>:w<CR><C-O>:so$MYVIMRC<CR>
+nnoremap <leader>rv :e $MYVIMRC<CR>:w<CR><C-O>:so$MYVIMRC<CR>:BundleInstall<CR>:bd
+nnoremap <leader>rb :e $MYVIMRC<CR>:w<CR><C-O>:so$MYVIMRC<CR>:BundleClean!<CR>:BundleInstall<CR>:bd
 nnoremap <leader>rf :w<CR>:set filetype=<C-R>=&filetype<CR><CR>
 
 " Bundles
@@ -132,52 +133,58 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-Bundle 'Markdown'
-Bundle 'kien/ctrlp.vim'
-Bundle 'chords'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'vim-json-bundle'
-Bundle 'jeroenbourgois/vim-actionscript'
-Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'groenewege/vim-less'
-Bundle 'godlygeek/tabular'
-Bundle 'camelcasemotion'
-"Bundle 'suan/vim-instant-markdown'
 Bundle 'codepad'
-Bundle 'Rename'
-Bundle 'ariofrio/vim-iosession'
-Bundle 'taglist.vim'
-Bundle 'butane.vim'
-Bundle 'scrooloose/syntastic'
+Bundle 'Gist.vim'
 
-"Bundle 'rosenfeld/conque-term'
-"let g:ConqueTerm_ReadUnfocused = 1
+Bundle 'Rename'
+Bundle 'butane.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'taglist.vim'
+
+"Bundle 'Valloric/YouCompleteMe'
+"Bundle 'scrooloose/syntastic'
+Bundle 'camelcasemotion'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+
+Bundle 'Markdown'
+Bundle 'ariofrio/vim-iosession'
+Bundle 'chords'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'groenewege/vim-less'
+Bundle 'jeroenbourgois/vim-actionscript'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'slim-template/vim-slim'
+Bundle 'tpope/vim-liquid'
+Bundle 'vim-json-bundle'
+Bundle 'wavded/vim-stylus'
 
 Bundle "tpope/vim-fugitive"
-nnoremap <leader>gw :Gwrite<CR>
-nnoremap <leader>gr :Gread<CR>
-nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gdc :Git diff --cached %<CR>
+nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gl :Glog<CR>
-nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gw :Gwrite<CR>
 
 Bundle 'scratch.vim'
 nnoremap <leader><tab> :Scratch<cr>
 
-"Bundle 'altercation/vim-colors-solarized'
 Bundle 'flazz/vim-colorschemes'
 colorscheme molokai
 highlight ColorColumn guibg=gray8
 set fillchars+=vert:\ 
 highlight VertSplit guibg=gray50
 
+Bundle 'godlygeek/tabular'
+" See ~/.vim/after/plugin/tabular_extra.vim
+ 
 filetype plugin indent on
 
