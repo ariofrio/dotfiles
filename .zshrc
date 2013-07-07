@@ -10,6 +10,8 @@ bundles=(bundler coffee github heroku rsync scala vundle yum)
 print -l $bundles | antigen-bundles
 antigen-apply
 
+unset SHARE_HISTORY
+
 source ~/.fresh/build/shell.sh
 
 git_prompt_info() {
@@ -46,6 +48,7 @@ volume() {
   esac
 }
 
+alias e="gvim --remote-silent"
 alias cls=clear
 
 [ -x $(which hub) ] && alias git=hub
