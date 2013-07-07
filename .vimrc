@@ -64,7 +64,7 @@ else
   set undodir^=$HOME/.vim/undo//        " (directory must exist to be used)
 endif
 
-set tabstop=2           " # of spaces a <Tab> counts for
+set tabstop=8           " # of spaces a <Tab> counts for
 set shiftwidth=2        " # of spaces for each step of (auto)indent
 set softtabstop=2       " # of spaces inserted when <Tab> is pressed in insert mode
 set expandtab           " use spaces instead of tabs
@@ -95,14 +95,14 @@ nnoremap <leader><space> :nohlsearch<cr>
 cmap w!! w !sudo tee >/dev/null %
 
 " noob settings
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
 
 set autowriteall            " autosave on buffer change, :quit, etc.
 au FocusLost * silent! :wa  " autosave on Alt-Tab
@@ -141,6 +141,7 @@ Bundle 'butane.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'taglist.vim'
+let Tlist_Show_One_File = 1
 
 "Bundle 'Valloric/YouCompleteMe'
 "Bundle 'scrooloose/syntastic'
@@ -179,6 +180,7 @@ nnoremap <leader><tab> :Scratch<cr>
 
 Bundle 'flazz/vim-colorschemes'
 colorscheme molokai
+highlight Comment         guifg=#869497
 highlight ColorColumn guibg=gray8
 set fillchars+=vert:\ 
 highlight VertSplit guibg=gray50
